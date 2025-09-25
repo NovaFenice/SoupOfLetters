@@ -7,25 +7,28 @@ import javafx.scene.layout.HBox;
 
 import java.util.List;
 
-public class OptionSelector extends HBox {
+public class Selector extends HBox {
     
     private int index = 0;
     private final List<String> options;
-    private final Label display;
-    private final Button leftButton;
-    private final Button rightButton;
+    private final Label optionsLabel;
+    private final ButtonSelector leftButton;
+    private final ButtonSelector rightButton;
 
-    public OptionSelector(List<String> options) {
+    public Selector(List<String> options, Label optionsLabel) {
         super(10);
+        this.optionsLabel = optionsLabel;
         this.options = options;
 
-        this.setAlignment(Pos.CENTER);
+        setAlignment(Pos.CENTER);
 
-        leftButton = new Button("<");
-        rightButton = new Button(">");
+        leftButton = new ButtonSelector(30, 60);
+        rightButton = new ButtonSelector(30, 60);
+        leftButton.setText("<");
+        rightButton.setText(">");
 
-        display = new Label(options.get(index));
-        display.setStyle("-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;");
+        this.optionsLabel.setText(options.get(index));
+        this.optionsLabel.setStyle("-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;");
 
         leftButton.setOnAction(e -> {
             if (index > 0) index--;
@@ -37,26 +40,31 @@ public class OptionSelector extends HBox {
             update();
         });
 
-        this.getChildren().addAll(leftButton, display, rightButton);
+        this.getChildren().addAll(leftButton, optionsLabel, rightButton);
         update();
+
     }
 
-    public Button getLeftButton() {
+    public ButtonSelector getLeftButton() {
         return leftButton;
     }
 
-    public Button getRightButton() {
+    public ButtonSelector getRightButton() {
         return rightButton;
     }
 
     private void update() {
-        display.setText(options.get(index));
+        optionsLabel.setText(options.get(index));
         leftButton.setDisable(index == 0);
         rightButton.setDisable(index == options.size() - 1);
     }
 
     public String getValue() {
         return options.get(index);
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     public void setValue(String value) {
@@ -66,4 +74,6 @@ public class OptionSelector extends HBox {
             update();
         }
     }
+
 }
+

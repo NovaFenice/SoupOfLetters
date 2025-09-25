@@ -6,6 +6,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.effect.DropShadow;
+import java.util.List;
+import javafx.scene.control.Label;
 
 public class MainMenuView extends VBox {
 
@@ -22,7 +24,7 @@ public class MainMenuView extends VBox {
         ButtonDerived exitButton = new ButtonDerived("Esci", "#e74c3c", 200, 60);
         
         startButton.setOnAction(e -> System.out.println("Avvio gioco..."));
-        optionButton.setOnAction(e -> app.showOptions());
+        optionButton.setOnAction(e -> System.out.println("Apertura opzioni..."));
         exitButton.setOnAction(e -> System.exit(0));
 
         VBox menu = new VBox(20, startButton, optionButton, exitButton);

@@ -29,13 +29,6 @@ public class SoupOfLetters extends Application {
         primaryStage.setScene(scene);
     }
 
-    public void showOptions() {
-        OptionsView optionsView = new OptionsView(this);
-        Scene scene = new Scene(optionsView, 1024, 720);
-        primaryStage.setScene(scene);
-    }
-
-
     public static void main(String[] args) {
         launch(args);
     }
